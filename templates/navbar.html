@@ -1,0 +1,75 @@
+{% extends 'base.html' %} {% block navbar %}
+<nav class="navbar navbar-expand-lg navbar-light nav-bg">
+    <div class="container-fluid">
+        {% if place != "summary" and place != "manage" and ruolo != "admin" %}
+            <a class="navbar-brand pt-2">
+                <h3>{{place}}</h3>
+            </a>
+        {% endif %}
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="col">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item mx-1">
+                        {% if back %}
+                            <li class="nav-item mx-1">
+                                <a class="text-dark text-no-underline" href="{{ url_for('manage') }}">
+                                    <h4 class="pt-2 text-nowrap">Torna indietro</h4>
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if ruolo == "admin" %}
+                            <li class="nav-item mx-1">
+                                <a class="text-dark text-no-underline" href="{{ url_for('cassa') }}">
+                                    <h4 class="pt-2 text-nowrap">Cassa</h4>
+                                </a>
+                            </li>
+                            <li class="nav-item mx-3">
+                                <a class="text-dark text-no-underline" href="{{ url_for('bar') }}">
+                                    <h4 class="pt-2 text-nowrap">Bar</h4>
+                                </a>
+                            </li>
+                            <li class="nav-item mx-3">
+                                <a class="text-dark text-no-underline" href="{{ url_for('manage') }}">
+                                    <h4 class="pt-2 text-nowrap">Gestione</h4>
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if place != "summary" and place != "manage" %}
+                            <a class="text-dark text-no-underline" href="{{ url_for('history') }}">
+                                <h4 class="pt-2 text-nowrap">Cronologia ordini</h4>
+                            </a>
+                        {% endif %}
+                        {% if place == "summary" and ruolo == "cassa"%}
+                            <a class="text-dark text-no-underline" href="{{ url_for('cassa') }}">
+                                <h3 class="pt-2 text-nowrap">Ritorna agli ordini</h3>
+                            </a>
+                        {% endif %}
+                        {% if place == "summary" and ruolo == "bar"%}
+                            <a class="text-dark text-no-underline" href="{{ url_for('bar') }}">
+                                <h3 class="pt-2 text-nowrap">Ritorna agli ordini</h3>
+                            </a>
+                        {% endif %}
+                    </li>
+                </ul>
+                <ul class="navbar-nav position-absolute top-50 end-0 translate-middle-y">
+                    <li class="pt-2 nav-item mx-1">
+                        <h4 id="clock" onload="currentTime()"></h4>
+                    </li>
+                    <li class="nav-item row mx-1">
+                        <h4 class="pt-2">{{day}}</h4></span>
+                    </li>
+                    <li class="nav-item row mx-1">
+                        <a class="text-dark text-no-underline" href="{{ url_for('logout') }}">
+                            <h4 class="pt-2">Esci</h4>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+{% endblock %}

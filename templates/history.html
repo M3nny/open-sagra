@@ -1,0 +1,62 @@
+{% extends 'navbar.html' %}
+{% block header %}
+{% endblock %} 
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row row-cols-3">
+        {% set count = namespace(value=0) %}
+        {% for item in summary %}
+            {% if item["NumeroOrdine"] != 1 %}
+                {% if item["NumeroOrdine"] != loop.previtem["NumeroOrdine"] %}
+
+                    <div class="col">
+                        <div class="card border-dark mb-3">
+                            <h3 class="card-header d-flex justify-content-center" style="color: #686868; background-color: #FCDEBE;">N°{{item["NumeroOrdine"]}}</h3>
+                            <div class="card-body text-dark">
+        
+                                <div class="overflow-auto row row-cols-1" style="min-height: 15rem; max-height: 15rem;">
+                                    {% for alimento in summary %}
+                                        {% if alimento["NumeroOrdine"] == item["NumeroOrdine"] %}
+                                            <h3 class="col d-flex justify-content-center">{{alimento["Quantita"]}}x {{alimento["NomeAlimento"]}}</h3>
+                                        {% endif %}
+                                    {% endfor %}
+                                                
+                                    <img class="col w-75 mt-3 img-responsive center-block" src="/static/assets/vector.png" style="height: 3px; margin:0 auto;">
+        
+                                    <h3 class="col d-flex justify-content-center">TOTALE: {{item["Totale"]}}</h3>
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endif %}
+            {% elif item["NumeroOrdine"] == 1 and count.value == 0 %}
+                {% set count.value = count.value + 1 %}
+                <div class="col">
+                    <div class="card border-dark mb-3">
+                        <h3 class="card-header d-flex justify-content-center" style="color: #686868; background-color: #FCDEBE;">N°{{item["NumeroOrdine"]}}</h3>
+                        <div class="card-body text-dark">
+
+                            <div class="overflow-auto row row-cols-1" style="min-height: 15rem; max-height: 15rem;">
+                                {% for alimento in summary %}
+                                    {% if alimento["NumeroOrdine"] == item["NumeroOrdine"] %}
+                                        <h3 class="col d-flex justify-content-center">{{alimento["Quantita"]}}x {{alimento["NomeAlimento"]}}</h3>
+                                    {% endif %}
+                                {% endfor %}
+                                
+                                
+                                <img class="col w-75 mt-3 img-responsive center-block" src="/static/assets/vector.png" style="height: 3px; margin:0 auto;">
+
+                                <h3 class="col d-flex justify-content-center">TOTALE: {{item["Totale"]}}</h3>
+                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

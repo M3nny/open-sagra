@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block header %}
+{% endblock %} 
+{% block content %}
+
+    <h1 class="d-flex justify-content-center align-items-center my-5">Inserisci la quantità di ingredienti per {{alimento[0].NomeAlimento}}</h1>
+    <form method="post" class="row  justify-content-center">
+        
+        {% for ingrediente in alimento[0].Ingredienti %}
+            <div class="col-md-1 p-2">
+                <h2 class="justify-content-center">{{ingrediente}}</h2>
+            </div>
+            <div class="col-md-1 p-2">
+                <input type="number" min="1" name="Quantita" class="form-control" required placeholder="Quantità" />
+            </div>
+            <pre></pre>
+        {% endfor %}
+
+        <div class="col p-2 d-flex justify-content-center align-items-center">
+            <input type="submit" class="btn" style="background-color: #fdd8c3; color: #3C3744;" value="Inserisci Piatto" />
+        </div>
+
+    </form>
+      
+{% endblock %}

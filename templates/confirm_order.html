@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block header %}
+{% endblock %} 
+{% block content %}
+
+<form method="post">  
+	<div class="row my-5 mx-5 justify-content-center h-100" style="height: 40rem !important;"> 
+		<div class="overflow-auto w-75 row h-100 col-4 mx-3 my-3 d-flex justify-content-center border border-5 rounded-3" style="background-color: #EEEEEE;">
+            <img src="/static/assets/logo_receipt.png" class="img-fluid w-25 h-25">
+            <h2 class="row justify-content-center">Open Sagra</h2>
+            
+            <div class="row">
+                <h3 class="col d-flex justify-content-center"></h3>
+                <h3 class="col float-end d-flex justify-content-center">Euro</h3>
+            </div>
+
+            {% for item in items %}
+            <div class="row">
+                <h3 class="col d-flex justify-content-center">{{item["Quantita"]}}x {{item["NomeAlimento"]}}</h3>
+                <h3 class="col float-end d-flex justify-content-center">{{item["PrezzoComplessivo"]}}</h3>
+            </div>
+            {% endfor %}
+
+            <img src="/static/assets/vector.png" class="img-fluid w-75 mt-3" style="height: 3px;">
+            <div class="row">
+                <h3 class="col d-flex justify-content-center">Op: {{username}}</h3>
+                <h3 class="col d-flex justify-content-center"></h3>
+            </div>
+
+            <div class="row">
+                <h3 class="col d-flex justify-content-center">TOTALE:</h3>
+                <h3 class="col d-flex justify-content-center">{{totale}}</h3>
+            </div>
+
+            <div class="row mt-5">
+                <h3 class="col d-flex justify-content-center">{{date}}</h3>
+                <h3 class="col d-flex justify-content-center">{{time}}</h3>
+            </div>
+
+            <div class="row">
+                <h3 class="col d-flex justify-content-center">N°{{NOrdine}}</h3>
+                <h3 class="col d-flex justify-content-center"></h3>
+            </div>
+            
+            
+            
+
+		
+	</div>
+
+	<div class="text-center">
+		<button type="submit" class="btn my-5 text-light bg-input">Conferma Ordine</button>
+	</div>
+</form>
+
+{% endblock %}

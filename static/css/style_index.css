@@ -1,0 +1,24 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.bg {
+background-image: url("/static/assets/index_bg.png");
+
+height: 100%; 
+
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+.text {
+    color: #3C3744;
+}
+
+.custom-btn {
+    width: 5rem;
+    background-color: #fdd8c3;
+    color: #3C3744;
+}

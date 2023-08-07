@@ -1,0 +1,68 @@
+{% extends 'navbar.html' %} {% block content %}
+    <div class="row justify-content-center">
+        <div class="col-auto w-75 my-5">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                    <th scope="col">IDOperatore</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Cognome</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Ruolo</th>
+                    <th scope="col">Elimina</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <form method="post">
+                                <th scope="row" name="IDOperatore">{{user["IDOperatore"]}}</th>
+                                <td name="NomeOperatore">{{user["NomeOperatore"]}}</td>
+                                <td name="CognomeOperatore">{{user["CognomeOperatore"]}}</td>
+                                <td name="Email">{{user["Email"]}}</td>
+                                <td name="Ruolo">{{user["Ruolo"]}}</td>
+                                <td colspan="2">
+                                    <button type="submit" name="id" value='{{user["IDOperatore"]}}' class="btn btn-danger">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </td>
+                            </form>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <form method="post" class="row justify-content-center">
+                            <td>
+                                <input type="text" name="IDOperatore" class="form-control" required placeholder="IDOperatore" />
+                            </td>
+                            <td>
+                                <input type="text" name="NomeOperatore" class="form-control" required placeholder="Nome" />
+                            </td>
+                            <td>
+                                <input type="text" name="CognomeOperatore" class="form-control" required placeholder="Cognome" />
+                            </td>
+                            <td>
+                                <input type="email" name="Email" class="form-control" required placeholder="Email" />
+                            </td>
+                            <td>
+                                <input type="password" name="Password" class="form-control"required  placeholder="Password" />
+                            </td>
+                            <td>
+                                <select name="Ruolo" class="form-control selectpicker" title="Ruolo" data-width="100px" required>
+                                    <option value="cassa">cassa</option>
+                                    <option value="bar">bar</option>
+                                    <option value="admin">admin</option>
+                                  </select>
+                            </td>
+                            <td>
+                                <button type="submit" class="btn btn-success">
+                                    <i class="bi bi-plus-circle"></i>
+                                </button>
+                            </td>
+                        </form>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+{% endblock %}

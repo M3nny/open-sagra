@@ -1,0 +1,34 @@
+.nav-bg {
+    background-color: #FFAB7B;
+} 
+
+.bg-item {
+    background-color: #FFEAD3;
+}
+
+.bg-input {
+    background-color: #3C3744;
+}
+
+.bg-quantity:not(:placeholder-shown) {
+    background-color:  #3C3744 !important;
+}
+
+.bg-receipt {
+    background-color: #EEEEEE;
+}
+
+.label, label.inline {
+    display: inline-block;
+    width: 20rem;
+}
+
+.right-rounded {
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+}
+
+.left-rounded {
+    border-top-left-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+}

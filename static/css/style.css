@@ -1,0 +1,91 @@
+/* generale */
+
+
+/* cassa */
+
+.nav-bg {
+    background-color: #FFAB7B;
+} 
+
+.bg-item {
+    background-color: #FFEAD3;
+}
+
+.bg-input {
+    background-color: #3C3744;
+}
+
+.bg-quantity:not(:placeholder-shown) {
+    background-color:  #3C3744 !important;
+}
+
+.bg-receipt {
+    background-color: #EEEEEE;
+}
+
+.label, label.inline {
+    display: inline-block;
+    width: 20rem;
+}
+
+.right-rounded {
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+}
+
+.left-rounded {
+    border-top-left-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+}
+
+/* navbarf */
+
+.navbar-nav.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+}
+
+.text-no-underline {
+    text-decoration: none;
+}
+
+/* index */
+
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.bg {
+/* The image used */
+background-image: url("/static/assets/index_bg.png");
+
+/* Full height */
+height: 100%; 
+width: 1932px;
+
+/* Center and scale the image nicely */
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+.text {
+    color: #3C3744;
+}
+
+.custom-btn {
+    width: 5rem;
+    background-color: #fdd8c3;
+    color: #3C3744;
+}
+
+
+/* generale */
+
+
+
+
+
+/* generale */

@@ -1,0 +1,97 @@
+{% extends 'navbar.html' %}
+{% block header %}{% endblock %}
+{% block content%}
+	
+	<form method="post">
+		<div class="row my-5 mx-5 justify-content-center h-100" style="height: 40rem !important">
+			<!-- MAIN -->
+	
+			<div
+				class="overflow-auto w-25 row h-100 col-4 mx-3 my-3 d-flex justify-content-center border border-5 rounded-3">
+				<!-- MANGIARE -->
+				{% for piatto in menu_piatti %}
+				<div class="align-middle my-2 d-flex w-100 h-25 border-3 rounded-3 border border-dark bg-item">
+					<!-- PIATTO -->
+					<span class="label align-self-center"><h4>{{piatto}}</h4></span>
+					<div class="num-block my-auto col-4 ps-3">
+						<div class="input-group my-auto num-in">
+							<span class="input-group-btn minus dis">
+								<button type="button" class="btn bg-input btn-number left-rounded shadow-none">
+									<strong class="text-white">-</strong>
+								</button>
+							</span>
+							<input type="text" id="quantity" name="{{piatto}}" class="bg-input bg-quantity shadow-none border border-dark border-1 text-white form-control input-number in-num" value="0"
+								min="0" max="100">
+							<span class="input-group-btn plus">
+								<button type="button" class="btn bg-input btn-number right-rounded shadow-none">
+									<strong class="text-white">+</strong>
+								</button>
+							</span>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+	
+			<div
+				class="overflow-auto w-25 row col-4 h-100 mx-3 5 my-3 d-flex justify-content-center border border-5 rounded-3">
+				<!-- BERE -->
+				{% for bevanda in menu_bevande %}
+				<div class="align-middle my-2 d-flex w-100 h-25 border-3 rounded-3 border border-dark bg-item">
+					<!-- BEVANDA -->
+					{% if menu_bevande[bevanda] == 0 %}
+					<span class="label align-self-center"><h4>{{bevanda}}</h4></span>
+					{% else %}
+					<span class="label align-self-center text-danger"><h4>{{bevanda}}</h4></span>
+					{% endif %}
+					<div class="num-block my-auto col-4 ps-3">
+						<div class="input-group my-auto num-in">
+							<span class="input-group-btn minus dis">
+								<button type="button" class="btn bg-input btn-number left-rounded shadow-none">
+									<strong class="text-white">-</strong>
+								</button>
+							</span>
+							<input type="text" id="quantity" name="{{bevanda}}" class="bg-input bg-quantity shadow-none border border-dark border-1 text-white form-control input-number in-num" value="0"
+								min="0" max="100">
+							<span class="input-group-btn plus">
+								<button type="button" class="btn bg-input btn-number right-rounded shadow-none">
+									<strong class="text-white">+</strong>
+								</button>
+							</span>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	
+		<div class="text-center">
+			<button type="submit" class="btn my-5 text-light bg-input">Ordina</button>
+		</div>
+	
+		{% if error %} {% for item in missing %}
+		<div class="toast-container">
+			<div class="toast fade show" style="position: absolute; top: 0; right: 0">
+				<div class="toast-header">
+					<strong class="me-auto"><i class="bi-globe"></i>Errore #0002</strong>
+					<small>ora</small>
+					<button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+				</div>
+				<div class="toast-body">
+					Mancano {{item["Quantita"]}} {{item["NomeIngrediente"]}} per l'alimento:
+					{{item["NomeAlimento"]}}
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	
+		<script>
+			$(document).ready(function () {
+				$(".toast").toast({
+					autohide: false,
+				});
+			});
+		</script>
+		{% endif %}
+	</form>
+	{% endblock %}

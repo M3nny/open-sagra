@@ -1,0 +1,107 @@
+{% extends 'navbar.html' %} {% block content %}
+    <div class="row justify-content-center">
+        <div class="col-auto w-75 my-5">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                    <th scope="col">IDAlimento</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Prezzo</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Festivo</th>
+                    <th scope="col">Alcolico</th>
+                    <th style="text-align:center;" colspan="2" scope="col">Elimina</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for alimento in alimenti %}
+                        <tr>
+                            <form method="post">
+                                <th scope="row" name="IDAlimento">{{alimento["IDAlimento"]}}</th>
+                                <td name="NomeAlimento">{{alimento["NomeAlimento"]}}</td>
+                                <td name="PrezzoVendita">{{alimento["PrezzoVendita"]}}</td>
+                                <td name="Categoria">{{alimento["Categoria"]}}</td>
+                                <td name="Festivo">{{alimento["Festivo"]}}</td>
+                                <td name="Alcolico">{{alimento["Alcolico"]}}</td>
+                                <td style="text-align:center;" colspan="2">
+                                    <button type="submit" name="id" value='{{alimento["IDAlimento"]}}' class="btn btn-danger">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </td>
+                            </form>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <form method="post" class="row row-cols-6 justify-content-center">
+                            <td>
+                                <input type="text" name="IDAlimento" class="form-control" required placeholder="IDAlimento" />
+                            </td>
+                            <td>
+                                <input type="text" name="NomeAlimento" class="form-control" required placeholder="Nome" />
+                            </td>
+                            <td>
+                                <input type="number" name="PrezzoVendita" class="form-control" required placeholder="Prezzo" />
+                            </td>
+                            <td>
+                                <select name="Categoria" class="form-control selectpicker" title="Categoria" data-width="110px" required>
+                                    <option value="piatto">piatto</option>
+                                    <option value="bevanda">bevanda</option>
+                                    <option value="dolce">dolce</option>
+                                  </select>
+                                </td>
+                            </td>
+                            <td>
+                                <select name="Festivo" class="form-control selectpicker" title="Festivo" data-width="100px" required>
+                                    <option value="True">True</option>
+                                    <option value="False">False</option>
+                                    <option value="NULL">NULL</option>
+                                  </select>
+                                </td>
+                            <td>
+                                <select name="Alcolico" class="form-control selectpicker" title="Alcolico" data-width="100px" required>
+                                    <option value="True">True</option>
+                                    <option value="False">False</option>
+                                    <option value="NULL">NULL</option>
+                                  </select>
+                                </td>
+                            <td>
+                                <select id="Ingredienti" name="Ingredienti" class="form-control selectpicker" multiple data-live-search="true" title="Ingredienti" data-size="6" data-width="130px" required>
+                                    {% for ingrediente in ingredienti %}
+                                        <option value='{{ingrediente["NomeIngrediente"]}}'>{{ingrediente["NomeIngrediente"]}}</option>
+                                    {% endfor %}
+                                  </select>                      
+                                </td>
+         
+                            <td>
+                                <button type="submit" class="btn btn-success" value="Inserisci Piatto">
+                                    <i class="bi bi-plus-circle"></i>
+                                </button>
+                            </td>
+                        </form>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    {% if error %}
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" style="position: absolute; top: 0; right: 0;">
+            <div class="toast-header">
+                <strong class="me-auto">Errore #0003</strong>
+                <small>ora</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                IDAlimento già presente
+            </div>
+        </div>
+        <script>
+            window.onload = (event) => {
+                let myAlert = document.querySelector('.toast');
+                let bsAlert = new bootstrap.Toast(myAlert);
+                bsAlert.show();
+            }
+        </script>
+
+    {% endif %}
+{% endblock %}

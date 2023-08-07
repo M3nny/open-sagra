@@ -1,0 +1,32 @@
+{% extends 'navbar.html' %}
+{% block content%}
+
+    <h1 class="d-flex justify-content-center align-items-center my-5">Benvenuto {{username}}</h1>
+    <form method="post" class="vh-100 d-flex justify-content-center align-items-center">
+        <div class="card bg-light mb-3" style="min-height: 13rem; max-height: 13rem; max-width: 18rem;">
+            <div class="card-header">Operatori</div>
+            <div class="card-body">
+                <p class="card-text">Gestisci gli operatori aggiungendone di nuovi o eliminandone.</p>
+                <a href="{{ url_for('manage_operatori') }}" class="btn" style="background-color: #fdd8c3; color: #3C3744;">Gestisci</a>
+            </div>
+        </div>
+
+        <div class="card bg-light mb-3 mx-5" style="min-height: 13rem; max-height: 13rem; max-width: 18rem;">
+            <div class="card-header">Alimenti</div>
+            <div class="card-body">
+                <p class="card-text">Aggiungi o elimina alimenti e seleziona da cosa sono composti</p>
+                <br>
+                <a href="{{ url_for('manage_alimenti') }}" class="btn" style="background-color: #fdd8c3; color: #3C3744;">Gestisci</a>
+            </div>
+        </div>
+
+        <div class="card bg-light mb-3" style="min-height: 13rem; max-height: 13rem; max-width: 18rem;">
+            <div class="card-header">Scorte Magazzino</div>
+            <div class="card-body">
+                <p class="card-text">Modifica la quantità di elementi presenti nel magazzino</p>
+                <br>
+                <a href="{{ url_for('manage_magazzino') }}" class="btn" style="background-color: #fdd8c3; color: #3C3744;">Gestisci</a>
+            </div>
+        </div>
+    </form>
+{% endblock %}

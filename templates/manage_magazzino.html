@@ -1,0 +1,59 @@
+{% extends 'navbar.html' %} {% block content %}
+    <div class="row justify-content-center">
+        <div class="col-auto w-75 my-5">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                    <th scope="col">IDIngrediente</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Quantità</th>
+                    <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ingrediente in ingredienti %}
+                        <tr>
+                            <th scope="row" name="IDIngrediente">{{ingrediente["IDIngrediente"]}}</th>
+                            <td name="NomeIngrediente">{{ingrediente["NomeIngrediente"]}}</td>
+                            <td name="Qta">
+                                <form method="post">
+                                    <input name="Qta_modificata" type="number" min="0" value='{{ingrediente["Quantita"]}}'>
+                                    <input type="hidden" name="IDIngrediente" value='{{ingrediente["IDIngrediente"]}}'></i>
+                                    <button type="submit" name="update" value="update" class="btn btn-warning">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                </form>
+                            </td>
+                            <td>
+                                <form method="post">
+                                    <button type="submit" name="IDIngrediente" value='{{ingrediente["IDIngrediente"]}}' class="btn btn-danger">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <form method="post" class="row justify-content-center">
+                            <td>
+                                <input type="text" name="IDIngrediente" class="form-control" required placeholder="IDIngrediente" />
+                            </td>
+                            <td>
+                                <input type="text" name="NomeIngrediente" class="form-control" required placeholder="Nome" />
+                            </td>
+                            <td>
+                                <input type="number" name="Qta" class="form-control" required placeholder="Quantità" />
+                            </td>
+                            <td>
+                                <button type="submit" name="add" value="add" class="btn btn-success">
+                                    <i class="bi bi-plus-circle"></i>
+                                </button>
+                            </td>
+                        </form>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+{% endblock %}
